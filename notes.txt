@@ -1,0 +1,90 @@
+Node.js + Express + Handlebars
+
+https://www.youtube.com/watch?v=m5ribwPpIPw
+
+
+STEPS:
+  create new app
+  git init, npm init
+  npm install express --save
+  express hello world
+  serve static files
+  npm install express3-handlebars --save
+  setup express to use handlebars
+  add /views and /views/layouts
+
+
+
+# create new app
+mkdir node-express-handlebars
+cd node-express-handlebars
+
+
+
+# git init, npm init
+git init
+npm init
+
+
+
+npm install express --save
+  git add package.json
+  gk "Add 'express' to package.json"
+  echo "node_modules/" >> .gitignore   # ignore the node_modules dir
+  gk "Add gitignore. Ignore node_modules."
+
+
+
+express hello world
+  touch server.js
+
+      var express = require('express');
+      var app = express();
+
+      app.get('/', function (req, res) {
+      res.send('Hello Worlds!');
+      });
+
+      var port = Number(process.env.PORT || 5000);
+      app.listen(port);
+
+
+
+
+serve static files
+  add to server.js
+    app.use('/public', express.static('public'));
+  add public dir
+    add test.html
+
+
+
+
+npm install express3-handlebars --save
+
+  reference:  https://www.npmjs.com/package/express3-handlebars
+              https://www.npmjs.com/package/express-handlebars?__hstc=72727564.879979d8eaa9b90a03eff3e5aee23847.1443574402031.1443574402031.1443574402031.1&__hssc=72727564.1.1443574402032&__hsfp=2558200632
+
+  add to server.js
+    var exphbs  = require('express3-handlebars');
+    app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+    app.set('view engine', 'handlebars');
+
+  add views/layouts dir
+  add main.handlebars
+
+
+
+add dynamic views
+  in server.js
+    var randomNumber = Math.round( Math.random() * 10 );
+
+    res.render('index', {
+      pickANumber: randomNumber
+    });
+
+  in index.handlebars
+    <p>
+      this is a randomly generated number: (inserted dynamically by handlebars.)<br>
+      {{ pickANumber }} <br>
+    </p>
