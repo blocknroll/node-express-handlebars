@@ -1,6 +1,6 @@
 Node.js + Express + Handlebars
 
-https://www.youtube.com/watch?v=m5ribwPpIPw
+  https://www.youtube.com/watch?v=m5ribwPpIPw
 
 
 STEPS:
@@ -15,19 +15,25 @@ STEPS:
 
 
 
-# create new app
+/////////////////////////////////////////////////
+create new app
+
 mkdir node-express-handlebars
 cd node-express-handlebars
 
 
 
-# git init, npm init
+/////////////////////////////////////////////////
+git init, npm init
+
 git init
 npm init
 
 
 
+/////////////////////////////////////////////////
 npm install express --save
+
   git add package.json
   gk "Add 'express' to package.json"
   echo "node_modules/" >> .gitignore   # ignore the node_modules dir
@@ -35,7 +41,9 @@ npm install express --save
 
 
 
+/////////////////////////////////////////////////
 express hello world
+
   touch server.js
 
       var express = require('express');
@@ -50,16 +58,18 @@ express hello world
 
 
 
-
+/////////////////////////////////////////////////
 serve static files
+
   add to server.js
     app.use('/public', express.static('public'));
+
   add public dir
     add test.html
 
 
 
-
+/////////////////////////////////////////////////
 npm install express3-handlebars --save
 
   reference:  https://www.npmjs.com/package/express3-handlebars
@@ -75,7 +85,9 @@ npm install express3-handlebars --save
 
 
 
+/////////////////////////////////////////////////
 add dynamic views
+
   in server.js
     var randomNumber = Math.round( Math.random() * 10 );
 
@@ -88,3 +100,15 @@ add dynamic views
       this is a randomly generated number: (inserted dynamically by handlebars.)<br>
       {{ pickANumber }} <br>
     </p>
+
+
+
+/////////////////////////////////////////////////
+deploy:
+
+$ heroku create
+$ git push heroku master
+$ heroku ps:scale web=1   // Ensure that at least one instance of the app is running
+$ heroku open
+
+$ heroku apps:rename newname
